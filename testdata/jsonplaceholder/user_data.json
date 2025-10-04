@@ -1,0 +1,22 @@
+{
+        "name": "John Doe",
+        "username": "johndoe",
+        "email": "john.doe@october.com",
+        "address": {
+            "street": "123 Main St",
+            "suite": "Apt. 4B",
+            "city": "Metropolis",
+            "zipcode": "12345",
+            "geo": {
+                "lat": "40.7128",
+                "lng": "-74.0060"
+            }
+        },
+        "phone": "1-800-555-1234",
+        "website": "johndoe.com",
+            "company": {
+                "name": "Doe Enterprises",
+                "catchPhrase": "Innovating the future",
+                "bs": "synergize scalable solutions"
+            }
+        }

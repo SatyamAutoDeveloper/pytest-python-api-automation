@@ -21,3 +21,15 @@ class UserClient:
         """Sends a POST request to create a new user."""
         response = requests.post(self.users_endpoint, json=payload)
         return response
+    
+    def update_user(self, user_id, payload):
+        """Sends a PUT request to update an existing user."""
+        url = f"{self.users_endpoint}/{user_id}"
+        response = requests.put(url, json=payload)
+        return response
+    
+    def delete_user(self, user_id):
+        """Sends a DELETE request to remove a user."""
+        url = f"{self.users_endpoint}/{user_id}"
+        response = requests.delete(url)
+        return response

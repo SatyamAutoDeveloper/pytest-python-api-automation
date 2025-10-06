@@ -2,3 +2,4 @@ pytest
 requests 
 pytest-html 
 jsonschema
+pytest-dependency

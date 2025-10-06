@@ -1,0 +1,11 @@
+{
+    "firstname" : "Savi",
+    "lastname" : "Kumari",
+    "totalprice" : 111,
+    "depositpaid" : true,
+    "bookingdates" : {
+        "checkin" : "2025-01-01",
+        "checkout" : "2025-10-01"
+    },
+    "additionalneeds" : "Breakfast"
+}

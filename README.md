@@ -14,6 +14,7 @@ Download and Install Python 3.10+ version
 **Framework Structure:**
 
 - **api_clients/**: To create wrapper classes for your API endpoints (abstracts requests logic).
+- **.github/**: Contains github actions workflows for API Test Execution.
 - **configs.ini**: For environment-specific configurations like base URLs.
 - **testdata/**: To store test data, including JSON schemas for response validation.
 - **reports/**: Where test execution reports will be saved.

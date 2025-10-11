@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      BOOKING_API_USERNAME: ${{ secrets.BOOKING_API_USERNAME }}
-      BOOKING_API_PASSWORD: ${{ secrets.BOOKING_API_PASSWORD }}
+      API_USERNAME: ${{ secrets.BOOKING_API_USERNAME }}
+      API_PASSWORD: ${{ secrets.BOOKING_API_PASSWORD }}
 
     steps:
       - name: Checkout code

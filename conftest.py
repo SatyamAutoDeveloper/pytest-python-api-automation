@@ -3,6 +3,7 @@ import sys
 import pytest
 from api_clients.user_client import UserClient
 from api_clients.booking_client import BookingClient
+from api_clients.go_rest_client import GoRestClient
 
 # Prevent pytest from generating .pyc files
 sys.dont_write_bytecode = True
@@ -40,3 +41,18 @@ def booking_api_credentials():
         "username": username,
         "password": password
     }
+
+
+@pytest.fixture(scope="session")
+def gorest_token():
+    """Reads GoRest PAT from environment variable."""
+    token = os.environ.get("GOREST_TOKEN") 
+    if not token:
+        pytest.skip('GOREST_TOKEN must be set for GoRest API tests.')
+    return token
+
+
+@pytest.fixture(scope="session")
+def GoRest(gorest_token):
+    """Fixture to provide an instance of the GoRestClient."""
+    return GoRestClient(gorest_token)

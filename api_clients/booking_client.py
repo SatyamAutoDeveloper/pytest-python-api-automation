@@ -2,12 +2,6 @@ import base64
 import requests
 from .get_base_url import extract_base_url
 
-"""credentials = f"{USERNAME}:{PASSWORD}"
-credentials_bytes = credentials.encode("utf-8")
-encoded_bytes = base64.b64encode(credentials_bytes)
-encoded_credentials = encoded_bytes.decode("utf-8")
-auth_header_value = f"Basic {encoded_credentials}"""
-
 
 class BearerToken:
     def __init__(self, token):

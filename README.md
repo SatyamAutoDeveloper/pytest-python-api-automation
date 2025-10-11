@@ -27,3 +27,4 @@ Download and Install Python 3.10+ version
 
 - **JsonPlaceHolder API**: pytest tests\test_jsonplaceholder_api.py 
 - **Booking API**: $env:API_USERNAME="original_username"; $env:API_PASSWORD="original_password"; pytest -v tests\test_booking_api.py
+- **GoRest API**: $env:GOREST_TOKEN="original_gorest_pat"; pytest -v tests\test_go_rest_api.py

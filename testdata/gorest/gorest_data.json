@@ -1,0 +1,13 @@
+{
+    "CREATE_USER": {
+        "name": "John Doe",
+        "email": "John.Doe@example.com",
+        "gender": "male",
+        "status": "active"
+    },
+
+    "UPDATE_USER_STATUS": {
+        "status": "inactive"
+    }
+
+}

@@ -1,7 +1,8 @@
-name: JsonPlaceHolder API Tests
+name: Booking API Tests
 
 on:
   workflow_dispatch:
+
 
 jobs:
   test:
@@ -21,20 +22,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Booking API Credentials
+        env:
+          API_USERNAME: ${{ secrets.BOOKING_API_USERNAME }}
+          API_PASSWORD: ${{ secrets.BOOKING_API_PASSWORD }}
+
       - name: Run API tests
         run: |
-          pytest tests/test_jsonplaceholder_api.py
+          pytest tests/test_booking_api.py
 
       - name: Upload Test Results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: reports/report.html
-
-      - name: Upload Coverage Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: reports/report.html

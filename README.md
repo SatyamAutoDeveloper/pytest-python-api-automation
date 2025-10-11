@@ -22,3 +22,8 @@ Download and Install Python 3.10+ version
 - **conftest.py**: A special pytest file for sharing fixtures across multiple test files.
 - **pytest.ini**: For custom markers, logging and html report configuration.
 - **requirements.txt**: To list all project dependencies.
+
+**Commands for Running Test in Local:**
+
+- **JsonPlaceHolder API**: pytest tests\test_jsonplaceholder_api.py 
+- **Booking API**: $env:API_USERNAME="original_username"; $env:API_PASSWORD="original_password"; pytest -v tests\test_booking_api.py

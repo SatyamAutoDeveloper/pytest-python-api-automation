@@ -3,7 +3,7 @@ import logging
 from api_clients import helpers
 
 logger = logging.getLogger(__name__)
-
+payload = helpers.load_test_data("../testdata/booking/booking_data.json")
 
 @pytest.mark.api
 @pytest.mark.smoke
@@ -40,8 +40,8 @@ def test_create_booking(booking_client):
     This test verifies that a POST request to the Booking API with valid booking data returns a successful response
     and the created booking details.
     """
-    booking_payload = helpers.load_test_data("../testdata/booking/booking_data.json")
-    response = booking_client.create_booking(booking_payload)
+    
+    response = booking_client.create_booking(payload["CREATE_BOOKING"])
     assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
     created_booking = response.json()
     logger.info(f"Created booking data: {created_booking}") 
@@ -57,9 +57,8 @@ def test_get_booking_by_id(booking_client):
     This test verifies that a GET request to the Booking API with a valid booking ID returns a successful response
     and the correct booking details.
     """
-    # First, create a booking to ensure there is a booking to retrieve
-    booking_payload = helpers.load_test_data("../testdata/booking/booking_data.json")
-    response = booking_client.create_booking(booking_payload)
+
+    response = booking_client.create_booking(payload["CREATE_BOOKING"])
     assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
     created_booking = response.json()
     
@@ -115,34 +114,96 @@ def test_get_booking_by_checkin(booking_client):
     assert booking_ids, f"No booking IDs found for check-in date '{checkin_date}'"
     logger.info(f"Retrieved {len(booking_ids)} booking IDs for check-in date '{checkin_date}'")
 
-"""
+
 @pytest.mark.api
 @pytest.mark.regression
-def test_update_booking(booking_client):
+def test_update_booking(booking_client, booking_api_credentials):
     '''
     Test case for updating an existing booking in the Booking API.
     This test verifies that a PUT request to the Booking API with valid booking data and authentication
     returns a successful response and the updated booking details.
     '''
     # First, create a booking to ensure there is a booking to update
-    booking_payload = helpers.load_test_data("../testdata/booking/booking_data.json")
-    response = booking_client.create_booking(booking_payload)
+    response = booking_client.create_booking(payload["CREATE_BOOKING"])
     assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
     created_booking = response.json()
     logger.info(f"Created booking id: {created_booking['bookingid']}")
     
     # Authenticate to get a token
-    auth_response = booking_client.authenticate("admin", "password123")
+    username = booking_api_credentials["username"]
+    password = booking_api_credentials["password"]
+    auth_response = booking_client.authenticate(username, password)
     assert auth_response.status_code == 200, f"Expected status code 200, but got {auth_response.status_code}"
     token = auth_response.json().get("token")
     assert token, "Authentication failed, no token received"
     
     # Update the booking
-    updated_payload = helpers.load_test_data("../testdata/booking/updated_booking_data.json")
-    response = booking_client.update_booking(created_booking["bookingid"], updated_payload, token)
+    response = booking_client.update_booking(created_booking["bookingid"], payload["UPDATE_BOOKING"], token)
     assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
     updated_booking = response.json()
     logger.info(f"Updated booking data: {updated_booking}")
-    assert updated_booking["firstname"] == updated_payload["firstname"], f"Expected firstname '{updated_payload['firstname']}', but got {updated_booking['firstname']}"
-    assert updated_booking["lastname"] == updated_payload["lastname"], f"Expected lastname '{updated_payload['lastname']}', but got {updated_booking['lastname']}"
-"""
+    assert updated_booking["firstname"] == payload["UPDATE_BOOKING"]["firstname"], f"Expected firstname '{payload["UPDATE_BOOKING"]['firstname']}', but got {updated_booking['firstname']}"
+    assert updated_booking["lastname"] == payload["UPDATE_BOOKING"]["lastname"], f"Expected lastname '{payload["UPDATE_BOOKING"]['lastname']}', but got {updated_booking['lastname']}"
+
+
+@pytest.mark.api
+@pytest.mark.regression
+def test_partial_update_booking(booking_client, booking_api_credentials):
+    '''
+    Test case for partially updating an existing booking in the Booking API.
+    This test verifies that a PATCH request to the Booking API with valid booking data and authentication
+    returns a successful response and the partially updated booking details.
+    '''
+    # First, create a booking to ensure there is a booking to update
+    response = booking_client.create_booking(payload["CREATE_BOOKING"])
+    assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
+    created_booking = response.json()
+    logger.info(f"Created booking id: {created_booking['bookingid']}")
+    
+    # Authenticate to get a token
+    username = booking_api_credentials["username"]
+    password = booking_api_credentials["password"]
+    auth_response = booking_client.authenticate(username, password)
+    assert auth_response.status_code == 200, f"Expected status code 200, but got {auth_response.status_code}"
+    token = auth_response.json().get("token")
+    assert token, "Authentication failed, no token received"
+    
+    # Partially update the booking
+    partial_payload = payload["PARTIAL_UPDATE_BOOKING"]
+    response = booking_client.partial_update_booking(created_booking["bookingid"], partial_payload, token)
+    assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
+    updated_booking = response.json()
+    logger.info(f"Partially updated booking data: {updated_booking}")
+    assert updated_booking["firstname"] == partial_payload["firstname"], f"Expected firstname '{partial_payload['firstname']}', but got {updated_booking['firstname']}"
+    assert updated_booking["lastname"] == partial_payload["lastname"], f"Expected lastname '{partial_payload['lastname']}', but got {updated_booking['lastname']}"
+
+
+@pytest.mark.api
+@pytest.mark.regression
+def test_delete_booking(booking_client, booking_api_credentials):
+    '''
+    Test case for deleting an existing booking in the Booking API.
+    This test verifies that a DELETE request to the Booking API with a valid booking ID and authentication
+    returns a successful response and that the booking is no longer retrievable.
+    '''
+    # First, create a booking to ensure there is a booking to delete
+    response = booking_client.create_booking(payload["CREATE_BOOKING"])
+    assert response.status_code == 200, f"Expected status code 200, but got {response.status_code}"
+    created_booking = response.json()
+    logger.info(f"Created booking id: {created_booking['bookingid']}")
+    
+    # Authenticate to get a token
+    username = booking_api_credentials["username"]
+    password = booking_api_credentials["password"]
+    auth_response = booking_client.authenticate(username, password)
+    assert auth_response.status_code == 200, f"Expected status code 200, but got {auth_response.status_code}"
+    token = auth_response.json().get("token")
+    assert token, "Authentication failed, no token received"
+    
+    # Delete the booking
+    response = booking_client.delete_booking(created_booking["bookingid"], token)
+    assert response.status_code == 201, f"Expected status code 201, but got {response.status_code}"
+    
+    # Verify the booking has been deleted
+    response = booking_client.get_booking_by_id(created_booking["bookingid"])
+    assert response.status_code == 404, f"Expected status code 404, but got {response.status_code}"

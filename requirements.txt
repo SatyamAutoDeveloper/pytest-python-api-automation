@@ -3,3 +3,4 @@ requests
 pytest-html 
 jsonschema
 pytest-dependency
+os

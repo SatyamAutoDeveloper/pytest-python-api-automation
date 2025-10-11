@@ -1,4 +1,5 @@
 {
+    "CREATE_BOOKING": {
     "firstname" : "Savi",
     "lastname" : "Kumari",
     "totalprice" : 111,
@@ -8,4 +9,22 @@
         "checkout" : "2025-10-01"
     },
     "additionalneeds" : "Breakfast"
+    },
+
+    "UPDATE_BOOKING": {
+    "firstname" : "Sam",
+    "lastname" : "Kumar",
+    "totalprice" : 120,
+    "depositpaid" : true,
+    "bookingdates" : {
+        "checkin" : "2025-10-01",
+        "checkout" : "2025-10-01"
+    },
+    "additionalneeds" : "Lunch"
+    },
+    
+    "PARTIAL_UPDATE_BOOKING": {
+        "firstname" : "Samantha",
+        "lastname" : "Kumari"
+     }
 }

@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  JsonPlaceHolder_API_Tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,9 +32,3 @@ jobs:
           name: test-results
           path: reports/report.html
 
-      - name: Upload Coverage Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: reports/report.html

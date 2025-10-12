@@ -1,4 +1,6 @@
 name: JsonPlaceHolder API Tests
+permissions:
+  contents: read
 
 on:
   workflow_dispatch:

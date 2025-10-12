@@ -5,6 +5,8 @@ on:
 
 jobs:
   Pet_Store_API_Tests:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
 
     steps:

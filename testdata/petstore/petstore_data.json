@@ -1,0 +1,75 @@
+{
+    "CREATE_PET": {
+        "id": 10,
+        "category": {
+            "id": 1,
+            "name": "german"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+            "id": 0,
+            "name": "meloni"
+            }
+        ],
+        "status": "available"
+    },
+
+    "UPDATE_PET": {
+        "id": 10,
+        "category": {
+            "id": 1,
+            "name": "german"
+        },
+        "name": "doggie",
+        "photoUrls": [
+            "string"
+        ],
+        "tags": [
+            {
+            "id": 0,
+            "name": "meloni"
+            }
+        ],
+        "status": "Sold"
+    },
+
+    "FIND_PETS_BY_STATUS": {
+        "status": ["available", "pending", "sold"]
+    },
+
+    "DELETE_PET": {
+        "petId": 10
+    },
+
+    "GET_PET_BY_ID": {
+        "petId": 10
+    },
+
+    "ADD_PET_IMAGE": {
+        "petId": 10,
+        "file": "./testdata/petstore/German_Shepherd.jpg"
+    },
+
+    "ORDER_PET": {
+        "id": 10,
+        "petId": 10,
+        "quantity": 1,
+        "shipDate": "2024-10-05T14:48:00.000Z",
+        "status": "placed",
+        "complete": true
+    },
+
+    "GET_ORDER_BY_ID": {
+        "orderId": 10
+    },
+
+    "DELETE_ORDER": {
+        "orderId": 10
+    }
+
+
+}

@@ -42,16 +42,16 @@ Download and Install Python 3.10+ version
    * Reduced likelihood of failure due to temporary network issues or server unavailability.
 
 
-# Implemented Extended Report(Allure Report) for Booking API Pipeline
+## Implemented Extended Report(Allure Report) for Booking API Pipeline
 - Run the Booking_API.yml Workflow in github actions to generate Allure Report from the Pipeline.
 
-# To Generate Allure Report in Local:
+## To Generate Allure Report in Local:
 - Setup Command Line Tool for Azure:
 1. **Download Zip: https://github.com/allure-framework/allure2/releases/tag/2.35.1**
 2. **Add allure/bin to system variable path**.
 
 - Run the below Command to Setup Allure on Project Level:
-3. **pip install allure-pytest **
+3. **pip install allure-pytest**
 4. **npm install -g allure-commandline**
 
 - Configure below line in pytest.ini file for Allure Raw Results:

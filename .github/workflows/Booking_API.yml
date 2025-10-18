@@ -34,7 +34,7 @@ jobs:
         continue-on-error: true
 
       - name: Generate Allure Report
-        uses: actions/allure-report@v1
+        uses: simple-elf/allure-report-action@v1.7
         id: allure-report
         with:
           # The directory where the raw results from Step 4 are stored

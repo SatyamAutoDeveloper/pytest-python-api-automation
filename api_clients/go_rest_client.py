@@ -1,6 +1,11 @@
 import base64
 import requests
 from .get_base_url import extract_base_url
+from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
+
+class APIRequestFailed(Exception):
+    """Custom exception for retry purposes."""
+    pass
 
 class BearerToken:
     def __init__(self, token):
@@ -28,11 +33,30 @@ class GoRestClient:
         self.users_endpoint = f"{self.base_url}/users"
         self.token_manager = BearerToken(token)
 
+    @retry(
+    # Stop after 5 attempts
+    stop=stop_after_attempt(2),
+    # Wait 2^x * 1 second between retries, up to 10 seconds max
+    wait=wait_exponential(multiplier=1, min=2, max=10),
+    # Only retry if an APIRequestFailed exception is raised
+    retry=retry_if_exception_type(APIRequestFailed),
+    # reraise the last exception if all retries fail
+    reraise=True,
+    )
     def get_users(self):
         """Sends a GET request to retrieve all users."""
-        headers = self.token_manager.get_headers()
-        response = requests.get(self.users_endpoint, headers=headers)
-        return response
+        try:
+            headers = self.token_manager.get_headers()
+            response = requests.get(self.users_endpoint, headers=headers)
+            if response.status_code >= 500:
+                raise APIRequestFailed(f"Server error: {response.status_code}")
+            return response
+        except requests.RequestException as e:
+            raise APIRequestFailed(f"Request failed: {e}")
+        except requests.Timeout as e:
+            raise APIRequestFailed(f"Request timed out: {e}")
+        except requests.ConnectionError as e:
+            raise APIRequestFailed(f"Connection error: {e}")
     
     def get_user_by_id(self, user_id):
         """Sends a GET request to retrieve a specific user by ID."""

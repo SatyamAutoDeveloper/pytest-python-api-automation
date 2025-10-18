@@ -1,16 +1,20 @@
 import pytest
 import logging
 from api_clients import helpers
+from api_clients.go_rest_client import APIRequestFailed
 
 logger = logging.getLogger(__name__)
 payload = helpers.load_test_data("../testdata/gorest/gorest_data.json")
 
 @pytest.mark.api
 @pytest.mark.smoke
-@pytest.mark.dependency()
 def test_get_users(GoRest):
     """Test to retrieve a list of users from the GoRest API."""
-    response = GoRest.get_users()
+    try:
+        response = GoRest.get_users()
+        response.raise_for_status()
+    except APIRequestFailed as e:
+        pytest.fail(f"API request failed after all retries: {e}")
     assert response.status_code == 200
     users = response.json()
     logger.info(f"Retrieved {len(users)} users.")

@@ -33,21 +33,31 @@ Download and Install Python 3.10+ version
 
 **Implemented retry logic on API level for gorestAPI**
 
-## Overview
-This section describes the implementation of retry logic at the API level within the project.
-
 ## Details
 - **Feature**: Retry Logic
 - **Purpose**: To enhance the reliability of API calls by automatically retrying failed requests.
 - **Implementation**: The retry logic is designed to handle transient errors, ensuring that the application can recover from temporary issues without manual intervention.
+- **Usage**: 
+   * The retry mechanism is invoked automatically during API calls.
+   * Configurable parameters may include the number of retries and the delay between attempts.
+- **Benefits**
+   * Improved resilience of the application.
+   * Reduced likelihood of failure due to temporary network issues or server unavailability.
 
-## Usage
-- The retry mechanism is invoked automatically during API calls.
-- Configurable parameters may include the number of retries and the delay between attempts.
 
-## Benefits
-- Improved resilience of the application.
-- Reduced likelihood of failure due to temporary network issues or server unavailability.
+**Implemented Extended Report(Allure Report) for Booking API Pipeline**
 
-## Conclusion
-The implemented retry logic significantly contributes to the robustness of the API interactions in the project.
+# To Generate Allure Report in Local:
+- Setup Command Line Tool for Azure:
+1. Download Zip: https://github.com/allure-framework/allure2/releases/tag/2.35.1
+2. Add allure/bin to system variable path.
+
+- Run the below Command to Setup Allure on Project Level:
+3. pip install allure-pytest 
+4. npm install -g allure-commandline
+
+- Configure below line in pytest.ini file for Allure Raw Results:
+5. addopts = --alluredir=allure-results
+
+- To Generate and Open Allure HTML Report: 
+run command: allure serve allure-results

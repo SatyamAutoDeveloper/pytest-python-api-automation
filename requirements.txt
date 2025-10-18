@@ -4,3 +4,4 @@ pytest-html
 jsonschema
 pytest-dependency
 tenacity
+allure-pytest

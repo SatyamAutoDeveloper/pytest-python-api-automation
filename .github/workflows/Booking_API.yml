@@ -66,8 +66,8 @@ jobs:
 
       - name: Deploy report to Github pages
         if: always()
-        uses: peaceiris/action-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.PAT_GITHUB }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history

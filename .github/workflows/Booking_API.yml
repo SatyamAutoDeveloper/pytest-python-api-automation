@@ -1,6 +1,6 @@
 name: Booking API Tests
 permissions:
-  contents: read
+  contents: write
 
 on:
   workflow_dispatch:
@@ -33,26 +33,27 @@ jobs:
           pytest tests/test_booking_api.py --alluredir=allure-results
         continue-on-error: true
 
+      - name: Get Allure History
+        uses: actions/checkout@v6
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
         id: allure-report
         with:
           # The directory where the raw results from Step 4 are stored
           allure_results: allure-results
-          # The directory where the final HTML report will be generated
-          report_path: allure-report
-          # Use a GitHub Pages branch to host the report (optional, but good practice)
-          gh_pages: gh-pages
+          allure_history: allure-history
+          retention_days: 20
 
-      - name: Archive raw Allure results
-        uses: actions/upload-artifact@v4
+      - name: Deploy report to Github pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          name: raw-allure-results
-          path: allure-results
-
-      - name: Upload Allure HTML Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-html-report
-          path: allure-report
-          retention-days: 7
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history

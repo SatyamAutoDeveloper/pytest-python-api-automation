@@ -59,3 +59,6 @@ Download and Install Python 3.10+ version
 
 - To Generate and Open Allure HTML Report: 
 run command: **allure serve allure-results**
+
+## Configure the Deployments of Allure Report on github pages and below is the live site:
+**Allure Report:** https://satyamautodeveloper.github.io/pytest-python-api-automation

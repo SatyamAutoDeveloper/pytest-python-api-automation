@@ -1,6 +1,7 @@
 name: Booking API Tests
 permissions:
-  contents: read
+  contents: write
+  pages: write
 
 on:
   workflow_dispatch:

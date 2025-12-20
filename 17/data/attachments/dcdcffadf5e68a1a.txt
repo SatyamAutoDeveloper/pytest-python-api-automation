@@ -1,0 +1,1 @@
+INFO     test_booking_api:test_booking_api.py:69 Retrieved booking data: {'firstname': 'Savi', 'lastname': 'Kumari', 'totalprice': 111, 'depositpaid': True, 'bookingdates': {'checkin': '2025-01-01', 'checkout': '2025-10-01'}, 'additionalneeds': 'Breakfast'}

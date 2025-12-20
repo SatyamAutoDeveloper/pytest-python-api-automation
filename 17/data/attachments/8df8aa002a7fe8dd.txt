@@ -1,0 +1,1 @@
+INFO     test_booking_api:test_booking_api.py:32 Retrieved 352 bookings

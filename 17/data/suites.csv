@@ -1,0 +1,48 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"
+    Test case for retrieving a booking by an invalid ID from the Booking API.
+    This test verifies that a GET request to the Booking API with an invalid booking ID returns a 404 response.
+    ","241","test_get_booking_by_invalid_id","tests","Sat Dec 20 14:31:32 UTC 2025","passed","Sat Dec 20 14:31:32 UTC 2025","","test_booking_api","",""
+"
+    Test case for checking the health of the Booking API.
+    This test verifies that a GET request to the Booking API health endpoint returns a successful response
+    ","252","test_get_booking_api_health","tests","Sat Dec 20 14:31:30 UTC 2025","passed","Sat Dec 20 14:31:31 UTC 2025","","test_booking_api","",""
+"
+    Test case for retrieving all bookings from the Booking API.
+    This test verifies that a GET request to the Booking API returns a successful response and a list of bookings.
+    ","243","test_get_all_bookings","tests","Sat Dec 20 14:31:31 UTC 2025","passed","Sat Dec 20 14:31:31 UTC 2025","","test_booking_api","",""
+"
+    Test case for partially updating an existing booking in the Booking API.
+    This test verifies that a PATCH request to the Booking API with valid booking data and authentication
+    returns a successful response and the partially updated booking details.
+    ","668","test_partial_update_booking","tests","Sat Dec 20 14:31:33 UTC 2025","passed","Sat Dec 20 14:31:34 UTC 2025","","test_booking_api","",""
+"
+    Test case for updating an existing booking in the Booking API.
+    This test verifies that a PUT request to the Booking API with valid booking data and authentication
+    returns a successful response and the updated booking details.
+    ","647","test_update_booking","tests","Sat Dec 20 14:31:32 UTC 2025","passed","Sat Dec 20 14:31:33 UTC 2025","","test_booking_api","",""
+"
+    Test case for creating a new booking in the Booking API.
+    This test verifies that a POST request to the Booking API with valid booking data returns a successful response
+    and the created booking details.
+    ","251","test_create_booking","tests","Sat Dec 20 14:31:31 UTC 2025","passed","Sat Dec 20 14:31:31 UTC 2025","","test_booking_api","",""
+"
+    Test case for deleting an existing booking in the Booking API.
+    This test verifies that a DELETE request to the Booking API with a valid booking ID and authentication
+    returns a successful response and that the booking is no longer retrievable.
+    ","898","test_delete_booking","tests","Sat Dec 20 14:31:34 UTC 2025","passed","Sat Dec 20 14:31:34 UTC 2025","","test_booking_api","",""
+"
+    Test case for retrieving booking IDs filtered by check-in date from the Booking API.
+    This test verifies that a GET request to the Booking API with a valid check-in date returns a successful response
+    and a list of booking IDs.
+    ","247","test_get_booking_by_checkin","tests","Sat Dec 20 14:31:32 UTC 2025","passed","Sat Dec 20 14:31:32 UTC 2025","","test_booking_api","",""
+"
+    Test case for retrieving booking IDs filtered by first name from the Booking API.
+    This test verifies that a GET request to the Booking API with a valid first name returns a successful response
+    and a list of booking IDs.
+    ","226","test_get_booking_by_firstname","tests","Sat Dec 20 14:31:32 UTC 2025","passed","Sat Dec 20 14:31:32 UTC 2025","","test_booking_api","",""
+"
+    Test case for retrieving a specific booking by ID from the Booking API.
+    This test verifies that a GET request to the Booking API with a valid booking ID returns a successful response
+    and the correct booking details.
+    ","457","test_get_booking_by_id","tests","Sat Dec 20 14:31:31 UTC 2025","passed","Sat Dec 20 14:31:32 UTC 2025","","test_booking_api","",""

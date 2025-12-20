@@ -1,0 +1,1 @@
+INFO     test_booking_api:test_booking_api.py:99 Retrieved 2 booking IDs for firstname 'Savi'

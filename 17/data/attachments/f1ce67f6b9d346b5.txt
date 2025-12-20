@@ -1,0 +1,2 @@
+INFO     test_booking_api:test_booking_api.py:161 Created booking id: 507
+INFO     test_booking_api:test_booking_api.py:176 Partially updated booking data: {'firstname': 'Samantha', 'lastname': 'Kumari', 'totalprice': 111, 'depositpaid': True, 'bookingdates': {'checkin': '2025-01-01', 'checkout': '2025-10-01'}, 'additionalneeds': 'Breakfast'}

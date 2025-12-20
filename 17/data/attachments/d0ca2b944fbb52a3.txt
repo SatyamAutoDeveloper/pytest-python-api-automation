@@ -1,0 +1,2 @@
+INFO     test_booking_api:test_booking_api.py:130 Created booking id: 499
+INFO     test_booking_api:test_booking_api.py:144 Updated booking data: {'firstname': 'Sam', 'lastname': 'Kumar', 'totalprice': 120, 'depositpaid': True, 'bookingdates': {'checkin': '2025-10-01', 'checkout': '2025-10-01'}, 'additionalneeds': 'Lunch'}

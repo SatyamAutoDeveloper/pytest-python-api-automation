@@ -1,7 +1,6 @@
 name: Booking API Tests
 permissions:
   contents: write
-  pages: write
 
 on:
   workflow_dispatch:
@@ -49,25 +48,12 @@ jobs:
           # The directory where the raw results from Step 4 are stored
           allure_results: allure-results
           allure_history: allure-history
-          report_url: allure-report
-
-      - name: Archive raw Allure results
-        uses: actions/upload-artifact@v4
-        with:
-          name: raw-allure-results
-          path: allure-results
-
-      - name: Upload Allure HTML Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-html-report
-          path: allure-report
-          retention-days: 7
+          retention_days: 20
 
       - name: Deploy report to Github pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: main
+          publish_branch: gh-pages
           publish_dir: allure-history
